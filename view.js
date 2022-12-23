@@ -12,6 +12,7 @@ let $toggleAll;
 let $newTodo;
 
 export function initView() {
+	$todoGetFile = qs('.todo-getFile');//Variable to get file
 	$todoList = qs('.todo-list');
 	$todoItemCounter = qs('.todo-count');
 	$clearCompleted = qs('.clear-completed');
@@ -152,4 +153,8 @@ export function bindEditItemCancel(handler) {
 			handler(_itemId(target));
 		}
 	});
+}
+
+export function getFile(){
+	$todoGetFile.value;
 }

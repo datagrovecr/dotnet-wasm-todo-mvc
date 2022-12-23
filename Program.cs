@@ -29,5 +29,10 @@ namespace TodoMVC
         {
             controller?.SetView(url);
         }
+
+        [JSExport]
+        public static void createFile(){
+            
+        }
     }
 }
