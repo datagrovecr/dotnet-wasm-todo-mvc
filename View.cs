@@ -32,6 +32,8 @@ namespace TodoMVC
         public void BindToggleItem(Action<long,bool> handler) => Interop.bindToggleItem(handler);
         public void BindRemoveCompleted(Action handler) => Interop.bindRemoveCompleted(handler);
         public void BindToggleAll(Action<bool> handler) => Interop.bindToggleAll(handler);
+        public string GetFile() => Interop.getFile();
+        public string setDebug(string text) => Interop.setDebug(text);
 
         public static partial class Interop
         {
@@ -72,6 +74,10 @@ namespace TodoMVC
             public static partial void bindToggleAll([JSMarshalAs<JSType.Function<JSType.Boolean>>] Action<bool> handler);
             [JSImport("bindToggleItem", "todoMVC/view.js")]
             public static partial void bindToggleItem([JSMarshalAs<JSType.Function<JSType.Number, JSType.Boolean>>] Action<long, bool> handler);
+            [JSImport("getFile", "todoMVC/view.js")]
+            public static partial string getFile();
+            [JSImport("setDebug", "todoMVC/view.js")]
+            public static partial string setDebug([JSMarshalAs<JSType.Function<JSType.String>>] string text);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace TodoMVC
         }
 
         [JSExport]
-        public static void createFile(){
+        public static void openFile(){
             
         }
     }

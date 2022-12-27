@@ -10,9 +10,12 @@ let $clearCompleted;
 let $main;
 let $toggleAll;
 let $newTodo;
+let $todoGetFile;
+let $todoDebug;
 
 export function initView() {
 	$todoGetFile = qs('.todo-getFile');//Variable to get file
+	$todoDebug = qs('.todoDebug');
 	$todoList = qs('.todo-list');
 	$todoItemCounter = qs('.todo-count');
 	$clearCompleted = qs('.clear-completed');
@@ -156,5 +159,9 @@ export function bindEditItemCancel(handler) {
 }
 
 export function getFile(){
-	$todoGetFile.value;
+	return $todoGetFile.value;
+}
+
+export function setDebug(text){
+	$todoDebug.value = text;
 }

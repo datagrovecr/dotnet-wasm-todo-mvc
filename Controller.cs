@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace TodoMVC
 {
@@ -33,7 +34,7 @@ namespace TodoMVC
 
         [GeneratedRegex("^#\\/")]
         private static partial Regex GetUrlHashRegex();
-        
+
         public void SetView(string? urlHash)
         {
             var route = GetUrlHashRegex().Replace(urlHash ?? "", "");
@@ -128,8 +129,21 @@ namespace TodoMVC
             view.SetMainVisibility(count.total != 0);
             _lastActiveRoute = route;
         }
-    }
-    public void createFile(){
-        
+
+        public void openFile()
+        {
+            using (DocumentFormat.OpenXml.Packaging.WordprocessingDocument document =
+                    DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(view.GetFile(), true))
+            {
+                // Get access to the main document part.
+                var docPart = document.MainDocumentPart;
+                // Code removed here…
+                Body body = docPart.Document.Body;
+            }
+        }
+
+        public void setDebug(string text){
+            view.setDebug(text);
+        }
     }
 }

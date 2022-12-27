@@ -1,25 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
-		<WasmMainJSPath>main.js</WasmMainJSPath>
-		<OutputType>Exe</OutputType>
-		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<LangVersion>preview</LangVersion>
-		<PublishTrimmed>true</PublishTrimmed>
-		<TrimMode>full</TrimMode>
-		<RunAOTCompilation>true</RunAOTCompilation>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<WasmExtraFilesToDeploy Include="index.html" />
-		<WasmExtraFilesToDeploy Include="*.js" />
-		<WasmExtraFilesToDeploy Include="*.css" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Remove="test\**" />
-	  <None Remove="test\**" />
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <WasmMainJSPath>main.js</WasmMainJSPath>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>preview</LangVersion>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>full</TrimMode>
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <WasmExtraFilesToDeploy Include="index.html"/>
+    <WasmExtraFilesToDeploy Include="*.js"/>
+    <WasmExtraFilesToDeploy Include="*.css"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="test\**"/>
+    <None Remove="test\**"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.19.0"/>
+  </ItemGroup>
 </Project>
