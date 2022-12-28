@@ -31,9 +31,9 @@ namespace TodoMVC
         }
 
         [JSExport]
-        public static void openFile(){
-            controller?.openFile();
-            controller?.setDebug("working");
+        public static int openFile(byte[] data)
+        {
+            return data.Length;
         }
     }
 }

@@ -1,20 +1,26 @@
 import { dotnet } from './dotnet.js'
-import { $on } from './helpers.js';
 
 let exports;
-const onHashchange = () => exports.TodoMVC.MainJS.OnHashchange(document.location.hash);
-$on(window, 'hashchange', onHashchange);
+const fh = document.getElementById('fileInput')
+console.log("attaching...", fh)
+fh.addEventListener('change', (event) => {
+    const file = event.target.files[0]
+    console.log(file)
+    var reader = new FileReader();
+    reader.onload = (event) => {
+        console.log("xx", event)
+        console.log(reader.result);
+        console.log("length", exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
+    }
+    reader.readAsArrayBuffer(file);
 
-const openFile = () => exports.TodoMVC.MainJS.openFile();
-const fileTarget = document.getElementsByClassName('todo-getFile');
-$on(fileTarget[0], 'input', openFile);
+}, true);
 
 const { getAssemblyExports, getConfig } = await dotnet.create();
-
 exports = await getAssemblyExports(getConfig().mainAssemblyName);
 
 await dotnet.run();
 
+const onHashchange = () => exports.TodoMVC.MainJS.OnHashchange(document.location.hash);
+window.addEventListener('hashchange', onHashchange);
 onHashchange();
-
-openFile();
