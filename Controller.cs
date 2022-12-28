@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace TodoMVC
@@ -132,8 +133,7 @@ namespace TodoMVC
 
         public void openFile()
         {
-            using (DocumentFormat.OpenXml.Packaging.WordprocessingDocument document =
-                    DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(view.GetFile(), true))
+            using (WordprocessingDocument document = WordprocessingDocument.Open(view.GetFile(), true))
             {
                 // Get access to the main document part.
                 var docPart = document.MainDocumentPart;

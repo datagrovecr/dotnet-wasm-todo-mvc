@@ -23,7 +23,7 @@ Original code at: https://todomvc.com/
     ```
 - In another console start the chrome with remote debugging enabled:
     ```
-    chrome --remote-debugging-port=9222 http://127.0.0.1:9000/index.html
+    "Google Chrome" --remote-debugging-port=9222 http://127.0.0.1:9000/index.html
     ```
 - Open the `chrome:\inspect` tab
 - Click on configure button

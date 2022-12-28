@@ -32,7 +32,8 @@ namespace TodoMVC
 
         [JSExport]
         public static void openFile(){
-            
+            controller?.openFile();
+            controller?.setDebug("working");
         }
     }
 }

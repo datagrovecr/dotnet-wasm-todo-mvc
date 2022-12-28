@@ -77,7 +77,7 @@ namespace TodoMVC
             [JSImport("getFile", "todoMVC/view.js")]
             public static partial string getFile();
             [JSImport("setDebug", "todoMVC/view.js")]
-            public static partial string setDebug([JSMarshalAs<JSType.Function<JSType.String>>] string text);
+            public static partial string setDebug(string text);
         }
     }
 }
