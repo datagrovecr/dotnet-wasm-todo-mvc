@@ -1,6 +1,10 @@
 using System;
+using System.IO;
 using System.Runtime.InteropServices.JavaScript;
 using System.Threading.Tasks;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using docx_lib;
 
 namespace TodoMVC
 {
@@ -31,9 +35,18 @@ namespace TodoMVC
         }
 
         [JSExport]
-        public static int openFile(byte[] data)
+        public static string openFile(byte[] file)
         {
-            return data.Length;
+            using (MemoryStream data = new MemoryStream(file))
+            {
+                using (WordprocessingDocument document = WordprocessingDocument.Open(data, true))
+                {
+                    // Get access to the main document part.
+                    var docPart = document.MainDocumentPart;
+                    Body body = docPart.Document.Body;
+                    return body.InnerText;
+                }
+            }
         }
     }
 }

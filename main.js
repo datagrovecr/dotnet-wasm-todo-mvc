@@ -10,10 +10,10 @@ fh.addEventListener('change', (event) => {
     reader.onload = (event) => {
         console.log("xx", event)
         console.log(reader.result);
-        console.log("length", exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
+        //console.log("length", exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
+        console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)));
     }
     reader.readAsArrayBuffer(file);
-
 }, true);
 
 const { getAssemblyExports, getConfig } = await dotnet.create();
