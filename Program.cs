@@ -37,16 +37,25 @@ namespace TodoMVC
         [JSExport]
         public static string openFile(byte[] file)
         {
+            string md;
+            var outStream = new MemoryStream();
+
             using (MemoryStream data = new MemoryStream(file))
             {
-                using (WordprocessingDocument document = WordprocessingDocument.Open(data, true))
-                {
-                    // Get access to the main document part.
-                    var docPart = document.MainDocumentPart;
-                    Body body = docPart.Document.Body;
-                    return body.InnerText;
-                }
+                convertToMd(data, outStream);
+                md = data.Length.ToString();
             }
+
+            using (StreamReader reader = new StreamReader(outStream))
+            {
+                md += reader.ReadToEnd();
+            }
+            return md;
+        }
+
+        public static async void convertToMd(MemoryStream data, MemoryStream outStream)
+        {
+            await DgDocx.docx_to_md(data, outStream);
         }
     }
 }
