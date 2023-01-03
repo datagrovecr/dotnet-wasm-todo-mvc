@@ -8,12 +8,12 @@ fh.addEventListener('change', (event) => {
     console.log(file)
     var reader = new FileReader();
     reader.onload = (event) => {
-        console.log("xx", event)
-        console.log(reader.result);
-        console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
-        //var string = exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result));
+        //console.log("xx", event)
+        //console.log(reader.result);
+        //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
+        var string = exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result));
 
-        //downloadBlob(string, 'test.md', 'application/octet-stream');
+        downloadBlob(string, 'test.md', 'application/octet-stream');
     }
     reader.readAsArrayBuffer(file);
 }, true);

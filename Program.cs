@@ -42,13 +42,17 @@ namespace TodoMVC
 
             using (MemoryStream data = new MemoryStream(file))
             {
-                convertToMd(data, outStream);
-                md = data.Length.ToString();
-            }
+                try
+                {
+                    convertToMd(data, outStream);
+                    StreamReader reader = new StreamReader(outStream);
+                    md = reader.ReadToEnd();
+                }
+                catch
+                {
+                    return "puto";
+                }
 
-            using (StreamReader reader = new StreamReader(outStream))
-            {
-                md += reader.ReadToEnd();
             }
             return md;
         }
