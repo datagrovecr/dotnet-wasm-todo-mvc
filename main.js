@@ -7,7 +7,7 @@ fh.addEventListener('change', (event) => {
     const file = event.target.files[0]
     console.log(file)
     var reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
         //console.log("xx", event)
         //console.log(reader.result);
         //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
