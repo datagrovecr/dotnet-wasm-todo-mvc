@@ -1,9 +1,25 @@
 import { dotnet } from './dotnet.js'
 
 let exports;
-const fh = document.getElementById('fileInput')
-console.log("attaching...", fh)
-fh.addEventListener('change', (event) => {
+const df = document.getElementById('docxFile')
+const mf = document.getElementById('docxFile')
+console.log("attaching...", df)
+df.addEventListener('change', (event) => {
+    const file = event.target.files[0]
+    console.log(file)
+    var reader = new FileReader();
+    reader.onload = async (event) => {
+        //console.log("xx", event)
+        //console.log(reader.result);
+        //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
+        var string = exports.TodoMVC.MainJS.openDocxFile(new Uint8Array(reader.result));
+
+        downloadBlob(string, 'test.md', 'application/octet-stream');
+    }
+    reader.readAsArrayBuffer(file);
+}, true);
+
+mf.addEventListener('change', (event) => {
     const file = event.target.files[0]
     console.log(file)
     var reader = new FileReader();
