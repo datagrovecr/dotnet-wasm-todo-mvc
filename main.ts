@@ -1,7 +1,7 @@
 import { dotnet } from './dotnet.js'
 
 let exports;
-let df = document.getElementById('docxFile')
+let df = document.getElementById('docxFile')!
 let mf = document.getElementById('mdFile')
 console.log("attaching...", df)
 
@@ -13,14 +13,14 @@ console.log("attaching...", df)
 //   }
 // }
 df.addEventListener('change', (event) => {
-    const file = event.target.files[0]
+    const file = event.target!['files'][0]
     console.log(file)
     var reader = new FileReader();
     reader.onload = async (event) => {
         //console.log("xx", event)
         //console.log(reader.result);
         //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
-        var string = exports.TodoMVC.MainJS.openDocxFile(new Uint8Array(reader.result));
+        var string = exports.TodoMVC.MainJS.openDocxFile(new Uint8Array(reader.result as ArrayBuffer));
 
         downloadBlob(string, 'test.md', 'application/octet-stream');
     }
