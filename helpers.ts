@@ -4,7 +4,7 @@
  * @param {string} selector Selector to query
  * @param {Element} [scope] Optional scope element for the selector
  */
-export function qs(selector: any, scope: any) {
+export function qs(selector, scope) {
 	return (scope || document).querySelector(selector);
 }
 
@@ -16,7 +16,7 @@ export function qs(selector: any, scope: any) {
  * @param {Function} callback Event callback
  * @param {boolean} [capture] Capture the event
  */
-export function $on(target: any, type: any, callback: any, capture: any) {
+export function $on(target, type, callback, capture) {
 	target.addEventListener(type, callback, !!capture);
 }
 
@@ -30,8 +30,8 @@ export function $on(target: any, type: any, callback: any, capture: any) {
  *                           from an element matching selector
  * @param {boolean} [capture] Capture the event
  */
-export function $delegate(target: any, selector: any, type: any, handler: any, capture: any) {
-	const dispatchEvent = (event: any) => {
+export function $delegate(target, selector, type, handler, capture) {
+	const dispatchEvent = event => {
 		const targetElement = event.target;
 		const potentialElements = target.querySelectorAll(selector);
 		let i = potentialElements.length;
