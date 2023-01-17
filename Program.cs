@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices.JavaScript;
-using System.Text;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -57,24 +56,17 @@ namespace TodoMVC
             }
             return md;
         }
-        [JSExport]
-        public static byte[] openMdFile(byte[] file)
+
+        public static void openMdFile(string file)
         {
-            return convertToDocx(file).Result;//Returns a stream
+            convertToDocx(file);
         }
 
-        public static async Task<byte[]> convertToDocx(byte[] data)
+        public static async void convertToDocx(string data)
         {
-
-            string stringData = Encoding.UTF8.GetString(data);
-
             var outStream = new MemoryStream();
 
-            await DgDocx.md_to_docx(stringData, outStream);
-
-            byte[] outData = outStream.ToArray();
-
-            return outData;
+            await DgDocx.md_to_docx(data, outStream);
         }
     }
 }

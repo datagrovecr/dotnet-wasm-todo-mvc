@@ -2,7 +2,7 @@ import { dotnet } from './dotnet.js'
 
 let exports;
 const df = document.getElementById('docxFile')
-const mf = document.getElementById('mdFile')
+const mf = document.getElementById('docxFile')
 console.log("attaching...", df)
 df.addEventListener('change', (event) => {
     const file = event.target.files[0]
@@ -27,9 +27,9 @@ mf.addEventListener('change', (event) => {
         //console.log("xx", event)
         //console.log(reader.result);
         //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
-        var byte = exports.TodoMVC.MainJS.openMdFile(new Uint8Array(reader.result));
+        var string = exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result));
 
-        downloadBlob(byte, 'test.docx', 'application/octet-stream');
+        downloadBlob(string, 'test.md', 'application/octet-stream');
     }
     reader.readAsArrayBuffer(file);
 }, true);

@@ -130,5 +130,20 @@ namespace TodoMVC
             view.SetMainVisibility(count.total != 0);
             _lastActiveRoute = route;
         }
+
+        public void openFile()
+        {
+            using (WordprocessingDocument document = WordprocessingDocument.Open(view.GetFile(), true))
+            {
+                // Get access to the main document part.
+                var docPart = document.MainDocumentPart;
+                // Code removed here…
+                Body body = docPart.Document.Body;
+            }
+        }
+
+        public void setDebug(string text){
+            view.setDebug(text);
+        }
     }
 }
