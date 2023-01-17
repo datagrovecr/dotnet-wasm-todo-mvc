@@ -1,4 +1,4 @@
-export function setLocalStorage(todosJson) {
+export function setLocalStorage(todosJson: any) {
 	window.localStorage.setItem('dotnet-wasm-todomvc', todosJson);
 }
 

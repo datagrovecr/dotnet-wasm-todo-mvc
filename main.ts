@@ -1,8 +1,10 @@
+// @ts-ignore
 import { dotnet } from './dotnet.js'
+//import {md2html} from './toDocxParse';
 
-let exports;
+let exports: any;
 let df = document.getElementById('docxFile')!
-let mf = document.getElementById('mdFile')
+let mf = document.getElementById('mdFile')!
 console.log("attaching...", df)
 
 // uploadFile(event: Event) {
@@ -12,11 +14,12 @@ console.log("attaching...", df)
 //     console.log("FileUpload -> files", fileList);
 //   }
 // }
-df.addEventListener('change', (event) => {
+
+df.addEventListener('change', (event: any) => {
     const file = event.target!['files'][0]
     console.log(file)
     var reader = new FileReader();
-    reader.onload = async (event) => {
+    reader.onload = async () => {
         //console.log("xx", event)
         //console.log(reader.result);
         //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
@@ -27,23 +30,23 @@ df.addEventListener('change', (event) => {
     reader.readAsArrayBuffer(file);
 }, true);
 
-// mf.addEventListener('change', (event) => {
-//     const file = event.target.files[0]
-//     console.log(file)
-//     var reader = new FileReader();
-//     reader.onload = async (event) => {
-//         //console.log("xx", event)
-//         //console.log(reader.result);
-//         //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
-//         var byte = exports.TodoMVC.MainJS.openMdFile(new Uint8Array(reader.result));
+mf.addEventListener('change', (event: any) => {
+    const file = event.target.files[0]
+    console.log(file)
+    var reader = new FileReader();
+    reader.onload = async () => {
+        //console.log("xx", event)
+        //console.log(reader.result);
+        //console.log(exports.TodoMVC.MainJS.openFile(new Uint8Array(reader.result)))
+        var byte = exports.TodoMVC.MainJS.openMdFile(new Uint8Array(reader.result as ArrayBuffer));
 
-//         downloadBlob(byte, 'test.docx', 'application/octet-stream');
-//     }
-//     reader.readAsArrayBuffer(file);
-// }, true);
+        downloadBlob(byte, 'test.docx', 'application/octet-stream');
+    }
+    reader.readAsArrayBuffer(file);
+}, true);
 
 const { getAssemblyExports, getConfig } = await dotnet.create();
-exports = await getAssemblyExports(getConfig().mainAssemblyName);
+(window as any).exports = await getAssemblyExports(getConfig().mainAssemblyName);
 
 await dotnet.run();
 
@@ -51,7 +54,7 @@ const onHashchange = () => exports.TodoMVC.MainJS.OnHashchange(document.location
 window.addEventListener('hashchange', onHashchange);
 onHashchange();
 
-var downloadBlob = function(data, fileName, mimeType) {
+var downloadBlob = function(data: Uint8Array, fileName: string, mimeType: string) {
     var blob = new Blob([data], {
       type: mimeType
     });
@@ -62,13 +65,13 @@ var downloadBlob = function(data, fileName, mimeType) {
     }, 1000);
   };
   
-   var downloadURL = function(data, fileName) {
-    var a;
-    a = document.createElement('a');
+   var downloadURL = function(data: string, fileName: string) {
+    
+    let a = document.createElement('a') as HTMLAnchorElement;
     a.href = data;
     a.download = fileName;
     document.body.appendChild(a);
-    a.style = 'display: none';
+    a.style.display = 'none';
     a.click();
     a.remove();
   };

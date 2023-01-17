@@ -24,6 +24,8 @@ Original code at: https://todomvc.com/
 - In another console start the chrome with remote debugging enabled:
     ```
     "Google Chrome" --remote-debugging-port=9222 http://127.0.0.1:9000/index.html
+    or
+    /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 http://127.0.0.1:9000/index.html
     ```
 - Open the `chrome:\inspect` tab
 - Click on configure button
